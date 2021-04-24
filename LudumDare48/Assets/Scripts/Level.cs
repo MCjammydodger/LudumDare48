@@ -4,12 +4,14 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private float width = 80;
     [SerializeField] private float height = 40;
+    [SerializeField] private float maxFuel = 100;
     [SerializeField] private Sprite background = null;
     [SerializeField] private SpriteRenderer leftBorder = null;
     [SerializeField] private SpriteRenderer rightBorder = null;
     [SerializeField] private SpriteRenderer topBorder = null;
     [SerializeField] private SpriteRenderer bottomBorder = null;
     [SerializeField] private Transform playerSpawnPoint = null;
+    [SerializeField] private Transform finishTransform = null;
 
     [HideInInspector] public float altitude = 0;
 
@@ -26,9 +28,19 @@ public class Level : MonoBehaviour
         return height;
     }
 
+    public float GetMaxFuel()
+    {
+        return maxFuel;
+    }
+
     public Transform GetPlayerSpawnPoint()
     {
         return playerSpawnPoint;
+    }
+
+    public Transform GetFinishTransform()
+    {
+        return finishTransform;
     }
 
     private void Awake()

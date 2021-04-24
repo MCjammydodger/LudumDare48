@@ -22,9 +22,21 @@ public class GameManager : MonoBehaviour
         void OnFinishAnimComplete()
         {
             player.ResumePlayer();
-            LoadNextLevel();
+            if (testCurrentLevelInScene)
+            {
+                StartLevel();
+            }
+            else
+            {
+                LoadNextLevel();
+            }
         }
-        playerLerp.DoLerp(player.transform.position, player.transform.position + (Vector3.up * 20), 1, OnFinishAnimComplete);
+        Lerp.LerpTo[] lerpTos = { 
+            new Lerp.LerpTo() { toVec = currentLevel.GetFinishTransform().position, 
+                                time = 0.5f}, 
+            new Lerp.LerpTo() { toVec = currentLevel.GetFinishTransform().position + (Vector3.up * 20),
+                                time = 0.5f} };
+        playerLerp.DoLerp(player.transform.position, lerpTos, OnFinishAnimComplete);
     }
 
     private void Start()
@@ -36,7 +48,7 @@ public class GameManager : MonoBehaviour
 #endif
         if (testCurrentLevelInScene)
         {
-            StartLevel();
+            StartNewLevel();
             onNewLevelLoaded?.Invoke(currentLevel);
         }
         else
@@ -68,14 +80,20 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
+        player.RestartPlayer();
+        player.transform.position = currentLevel.GetPlayerSpawnPoint().position;
+        player.transform.rotation = currentLevel.GetPlayerSpawnPoint().rotation;
+    }
+
+    private void StartNewLevel()
+    {
+        player.SetMaxFuel(currentLevel.GetMaxFuel());
+        StartLevel();
         player.PausePlayer();
         Vector3 spawnPos = currentLevel.GetPlayerSpawnPoint().position;
         void OnStartAnimFinished()
         {
             player.ResumePlayer();
-            player.RestartPlayer();
-            player.transform.position = spawnPos;
-            player.transform.rotation = currentLevel.GetPlayerSpawnPoint().rotation;
         }
         if (!levelsManager.IsOnFirstLevel())
         {
@@ -98,7 +116,7 @@ public class GameManager : MonoBehaviour
         if (!levelsManager.IsOnLastLevel())
         {
             currentLevel = levelsManager.LoadNextLevel();
-            StartLevel();
+            StartNewLevel();
             onNewLevelLoaded?.Invoke(currentLevel);
         }
     }
@@ -108,7 +126,7 @@ public class GameManager : MonoBehaviour
         if(!levelsManager.IsOnFirstLevel())
         {
             currentLevel = levelsManager.LoadPreviousLevel();
-            StartLevel();
+            StartNewLevel();
             onNewLevelLoaded?.Invoke(currentLevel);
         }
     }

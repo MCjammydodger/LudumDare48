@@ -4,7 +4,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float engineForce = 10;
     [SerializeField] private float rotateSpeed = 30;
-    [SerializeField] private float maxFuel = 100;
     [SerializeField] private float fuelPerSecond = 5;
     [SerializeField] private GameObject flameEffect = null;
     [SerializeField] private GameManager gameManager = null;
@@ -14,7 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigidBody = null;
     private Vector2 forceToApply = Vector2.zero;
     private float currentFuel = 0;
+    private float maxFuel = 0;
     private bool paused = false;
+
+    public void SetMaxFuel(float fuel)
+    {
+        maxFuel = fuel;
+    }
 
     public void PausePlayer()
     {

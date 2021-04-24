@@ -14,6 +14,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateFuelLevel(float currentFuel, float maxFuel)
     {
-        fuelText.text = "Fuel level: " + ((currentFuel / maxFuel) * 100).ToString("0") + "%";
+        fuelText.text = "Fuel level: " + currentFuel.ToString("0") + "/" + maxFuel.ToString("0") + " (" + ((currentFuel / maxFuel) * 100).ToString("0") + "%)" ;
     }
 }

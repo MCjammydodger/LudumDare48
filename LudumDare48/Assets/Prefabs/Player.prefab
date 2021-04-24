@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5366905365938048073}
   - component: {fileID: 5902246222640244696}
   - component: {fileID: 5902246222640244697}
+  - component: {fileID: 3272491968383026553}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -47,7 +48,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 100
   m_LinearDrag: 0
-  m_AngularDrag: 1
+  m_AngularDrag: 10
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -68,8 +69,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   engineForce: 100000
   rotateSpeed: 200
-  flameEffect: {fileID: 0}
+  maxFuel: 100
+  fuelPerSecond: 10
+  flameEffect: {fileID: 7373582733181180150}
   gameManager: {fileID: 0}
+--- !u!114 &3272491968383026553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106385570389991729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645c1a72bd2f73c4fa9d11ada377cb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7066690196550937360
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +98,7 @@ GameObject:
   - component: {fileID: 1663696585}
   m_Layer: 0
   m_Name: PlayerShip
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +157,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e555ff4ed3c26d24bb31132e912830d9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -198,11 +213,11 @@ GameObject:
   - component: {fileID: 3184819973594897916}
   m_Layer: 0
   m_Name: Flame
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1722162004223985845
 Transform:
   m_ObjectHideFlags: 0
@@ -278,7 +293,7 @@ GameObject:
   - component: {fileID: 880608528023562641}
   m_Layer: 0
   m_Name: Visuals
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
