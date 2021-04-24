@@ -1,18 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private PlayerMovement player = null;
+
+    private const string restartInput = "Restart";
+
+    private Level currentLevel;
+
+    private void Start()
     {
-        
+        currentLevel = FindObjectOfType<Level>();
+        Debug.Assert(currentLevel, "Level not found!");
+        StartLevel();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetButtonDown(restartInput))
+        {
+            StartLevel();
+        }
+    }
+
+    private void SpawnPlayer()
+    {
+        player.RestartPlayer();
+        player.transform.position = currentLevel.GetPlayerSpawnPoint().position;
+        player.transform.rotation = currentLevel.GetPlayerSpawnPoint().rotation;
+    }
+
+    private void StartLevel()
+    {
+        SpawnPlayer();
     }
 }

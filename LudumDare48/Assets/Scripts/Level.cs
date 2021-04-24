@@ -8,6 +8,7 @@ public class Level : MonoBehaviour
     [SerializeField] private SpriteRenderer rightBorder = null;
     [SerializeField] private SpriteRenderer topBorder = null;
     [SerializeField] private SpriteRenderer bottomBorder = null;
+    [SerializeField] private Transform playerSpawnPoint = null;
 
     private const float screenWidth = 40;
     private const float screenHeight = 20;
@@ -20,6 +21,11 @@ public class Level : MonoBehaviour
     public float GetHeight()
     {
         return height;
+    }
+
+    public Transform GetPlayerSpawnPoint()
+    {
+        return playerSpawnPoint;
     }
 
     private void Awake()

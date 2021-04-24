@@ -11,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigidBody = null;
     private Vector2 forceToApply = Vector2.zero;
 
+    public void RestartPlayer()
+    {
+        rigidBody.isKinematic = true;
+        rigidBody.velocity = Vector2.zero;
+        rigidBody.angularVelocity = 0;
+        rigidBody.isKinematic = false;
+    }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
