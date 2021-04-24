@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class PlanetLocator : MonoBehaviour
 {
-    [SerializeField] private Planet[] planets;
-    [SerializeField] private Transform pointerPrefab;
+    [SerializeField] private Planet[] planets = null;
+    [SerializeField] private Transform pointerPrefab = null;
 
     private Transform player;
     private Transform[] pointers;
+
+    public Planet FindPlanetOfType(Planets planetType)
+    {
+        for(int i = 0; i < planets.Length; ++i)
+        {
+            if(planets[i].planetType == planetType)
+            {
+                return planets[i];
+            }
+        }
+        return null;
+    }
 
     private void Awake()
     {
@@ -18,7 +30,7 @@ public class PlanetLocator : MonoBehaviour
 
         for(int i = 0; i < planets.Length; ++i)
         {
-            pointers[i] = Instantiate(pointerPrefab);
+            pointers[i] = Instantiate(pointerPrefab, transform);
 
         }
     }
@@ -32,6 +44,7 @@ public class PlanetLocator : MonoBehaviour
             pointer.GetComponent<SpriteRenderer>().color = planets[i].colour;
             pointer.position = player.position;
             Vector3 direction = planet.position - player.position;
+            pointer.gameObject.SetActive(direction.sqrMagnitude > 20);
             pointer.position = player.position + (direction.normalized * 20f);
             Vector3 relative = pointer.InverseTransformPoint(planet.position);
             float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager uiManager = null;
     [SerializeField] private SpriteRenderer background = null;
     [SerializeField] private bool testCurrentLevelInScene = false;
+    [SerializeField] private Planets startingPlanet = Planets.GreenPlanet;
 
     public UnityAction<Level> onNewLevelLoaded;
 
@@ -41,7 +42,9 @@ public class GameManager : MonoBehaviour
         ResumeGame();
         if(teleport)
         {
-            // Load Planet level
+            levelsManager.LoadPlanet(currentPlanet.planetType);
+            currentPlanet = null;
+            LoadNextLevel();
         }
         else
         {
@@ -79,6 +82,7 @@ public class GameManager : MonoBehaviour
 #if !UNITY_EDITOR
         testCurrentLevelInScene = false;
 #endif
+        levelsManager.LoadPlanet(startingPlanet);
         if (testCurrentLevelInScene)
         {
             StartNewLevel();
@@ -108,13 +112,16 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel());
         uiManager.UpdateGravityLevel(currentLevel.GetGravityMultiplier());
 #if DEBUG
-        if(Input.GetKeyDown(KeyCode.N))
+        if (!currentLevel.IsDeepSpace())
         {
-            LoadNextLevel();
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            LoadPreviousLevel();
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                LoadNextLevel();
+            }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                LoadPreviousLevel();
+            }
         }
 #endif
     }
@@ -122,8 +129,19 @@ public class GameManager : MonoBehaviour
     private void SpawnPlayer()
     {
         player.RestartPlayer();
-        player.transform.position = currentLevel.GetPlayerSpawnPoint().position;
-        player.transform.rotation = currentLevel.GetPlayerSpawnPoint().rotation;
+        Transform spawnPoint;
+        if(currentLevel.IsDeepSpace())
+        {
+            Planet planet = FindObjectOfType<PlanetLocator>().FindPlanetOfType(levelsManager.GetCurrentPlanet());
+            spawnPoint = planet.transform;
+            player.SetCurrentPlanet(planet);
+        }
+        else
+        {
+            spawnPoint = currentLevel.GetPlayerSpawnPoint();
+        }
+        player.transform.position = spawnPoint.position;
+        player.transform.rotation = spawnPoint.rotation;
     }
 
     private void StartNewLevel()
@@ -132,19 +150,15 @@ public class GameManager : MonoBehaviour
         player.SetGravityMultiplier(currentLevel.GetGravityMultiplier());
         player.SetDeepSpace(currentLevel.IsDeepSpace());
         StartLevel();
-        player.PausePlayer();
-        Vector3 spawnPos = currentLevel.GetPlayerSpawnPoint().position;
-        void OnStartAnimFinished()
-        {
-            player.ResumePlayer();
-        }
         if (!levelsManager.IsOnFirstLevel() && !currentLevel.IsDeepSpace())
         {
+            player.PausePlayer();
+            Vector3 spawnPos = currentLevel.GetPlayerSpawnPoint().position;
+            void OnStartAnimFinished()
+            {
+                player.ResumePlayer();
+            }
             playerLerp.DoLerp(spawnPos - (Vector3.up * 20), spawnPos, 1, OnStartAnimFinished);
-        }
-        else
-        {
-            OnStartAnimFinished();
         }
     }
 
@@ -156,12 +170,9 @@ public class GameManager : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        if (!levelsManager.IsOnLastLevel())
-        {
-            currentLevel = levelsManager.LoadNextLevel();
-            StartNewLevel();
-            onNewLevelLoaded?.Invoke(currentLevel);
-        }
+        currentLevel = levelsManager.LoadNextLevel();
+        StartNewLevel();
+        onNewLevelLoaded?.Invoke(currentLevel);
     }
 
     private void LoadPreviousLevel()

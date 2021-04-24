@@ -26,6 +26,8 @@ public class Lerp : MonoBehaviour
         currentTime = 0;
         onCompleteCallback = onComplete;
         lerping = true;
+
+        transform.position = fromVec;
     }
 
     public void DoLerp(Vector2 from, LerpTo[] tos, UnityAction onComplete)

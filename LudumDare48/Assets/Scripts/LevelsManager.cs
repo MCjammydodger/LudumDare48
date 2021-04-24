@@ -1,10 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+class PlanetLevels
+{
+    public Planets planet = Planets.GreenPlanet;
+    public List<Level> levels = null;
+}
+
 public class LevelsManager : MonoBehaviour
 {
-    [SerializeField] List<Level> levels = new List<Level>();
+    //[SerializeField] List<Level> levels = new List<Level>();
+    [SerializeField] List<PlanetLevels> planetLevels = new List<PlanetLevels>();
+    [SerializeField] Level space = null;
 
+    private PlanetLevels currentPlanet = null;
     private Level currentLevel = null;
     private int currentLevelIndex = -1;
 
@@ -12,17 +22,30 @@ public class LevelsManager : MonoBehaviour
     {
         // For debug purposes - if the scene is run with a level already in, it will clean it up.
         currentLevel = FindObjectOfType<Level>();
-        CalculateAltitudes();
     }
 
     private void CalculateAltitudes()
     {
         float currentAltitude = 0;
-        for(int i = 0; i < levels.Count; ++i)
+        for(int i = 0; i < currentPlanet.levels.Count; ++i)
         {
-            levels[i].altitude = currentAltitude;
-            currentAltitude += levels[i].GetHeight() + 40;
+            currentPlanet.levels[i].altitude = currentAltitude;
+            currentAltitude += currentPlanet.levels[i].GetHeight() + 40;
         }
+    }
+
+    public void LoadPlanet(Planets planet)
+    {
+        for(int i = 0; i < planetLevels.Count; ++i)
+        {
+            if(planetLevels[i].planet == planet)
+            {
+                currentPlanet = planetLevels[i];
+                CalculateAltitudes();
+                return;
+            }
+        }
+        Debug.LogError("Could not find planet: " + planet);
     }
 
     public Level LoadLevel(int levelIndex)
@@ -31,29 +54,27 @@ public class LevelsManager : MonoBehaviour
         {
             Destroy(currentLevel.gameObject);
         }
-        currentLevel = Instantiate(levels[levelIndex]);
-        currentLevelIndex = levelIndex;
+        if (levelIndex < 0 || levelIndex >= currentPlanet.levels.Count)
+        {
+            currentLevel = Instantiate(space);
+            currentLevelIndex = -1;
+        }
+        else
+        {
+            currentLevel = Instantiate(currentPlanet.levels[levelIndex]);
+            currentLevelIndex = levelIndex;
+        }
         return currentLevel; 
     }
 
     public Level LoadNextLevel()
     {
-        if (!IsOnLastLevel())
-        {
-            return LoadLevel(currentLevelIndex + 1);
-        }
-        Debug.LogError("On last level, can't load next level!");
-        return currentLevel;
+        return LoadLevel(currentLevelIndex + 1);
     }
 
     public Level LoadPreviousLevel()
     {
-        if(!IsOnFirstLevel())
-        {
-            return LoadLevel(currentLevelIndex - 1);
-        }
-        Debug.LogError("On first level, can't load previous level!");
-        return currentLevel;
+        return LoadLevel(currentLevelIndex - 1);
     }
 
     public Level GetCurrentLevel()
@@ -61,9 +82,14 @@ public class LevelsManager : MonoBehaviour
         return currentLevel;
     }
 
+    public Planets GetCurrentPlanet()
+    {
+        return currentPlanet.planet;
+    }
+
     public bool IsOnLastLevel()
     {
-        return currentLevelIndex == levels.Count - 1;
+        return currentLevelIndex == currentPlanet.levels.Count - 1;
     }
 
     public bool IsOnFirstLevel()

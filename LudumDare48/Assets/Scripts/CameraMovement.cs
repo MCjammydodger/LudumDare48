@@ -26,7 +26,7 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         float newYPos = playerTransform.position.y;
-        float newXPos = deepSpace ? playerTransform.position.x : transform.position.x;
+        float newXPos = deepSpace ? playerTransform.position.x : 0;
         if (!deepSpace)
         {
             if (newYPos < minYPos)

@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
     private bool deepSpace = false;
     private Planet currentPlanet = null;
 
+    public void SetCurrentPlanet(Planet planet)
+    {
+        currentPlanet = planet;
+    }
+
     public float GetVelocity()
     {
         return rigidBody.velocity.magnitude;
