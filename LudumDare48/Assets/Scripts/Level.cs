@@ -4,7 +4,6 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private float width = 80;
     [SerializeField] private float height = 40;
-    [SerializeField] private bool previousLevelAdvancesAltitude = false;
     [SerializeField] private Sprite background = null;
     [SerializeField] private SpriteRenderer leftBorder = null;
     [SerializeField] private SpriteRenderer rightBorder = null;
@@ -30,11 +29,6 @@ public class Level : MonoBehaviour
     public Transform GetPlayerSpawnPoint()
     {
         return playerSpawnPoint;
-    }
-
-    public bool ShouldPreviousLevelAdvanceAltitude()
-    {
-        return previousLevelAdvancesAltitude;
     }
 
     private void Awake()

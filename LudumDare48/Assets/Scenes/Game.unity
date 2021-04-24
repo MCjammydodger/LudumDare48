@@ -300,6 +300,8 @@ MonoBehaviour:
   levels:
   - {fileID: 4093681265560957785, guid: a66e39a89055052418794b67b6cc9d40, type: 3}
   - {fileID: 4093681265560957785, guid: 6673e8bcbfcede14b8d9d4b97f3aa32c, type: 3}
+  - {fileID: 4093681265560957785, guid: b592776bcd46c414cabb249eb23bbd79, type: 3}
+  - {fileID: 4093681265560957785, guid: f220a4fce725e5e4691ff6954f148609, type: 3}
 --- !u!4 &1425595906
 Transform:
   m_ObjectHideFlags: 0
@@ -395,8 +397,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255406
+  m_fontColor: {r: 0.18052626, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -420,7 +422,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0

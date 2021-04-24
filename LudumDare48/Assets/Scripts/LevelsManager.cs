@@ -20,11 +20,8 @@ public class LevelsManager : MonoBehaviour
         float currentAltitude = 0;
         for(int i = 0; i < levels.Count; ++i)
         {
-            if(levels[i].ShouldPreviousLevelAdvanceAltitude() && i != 0)
-            {
-                currentAltitude += levels[i - 1].GetHeight() + 5;
-            }
             levels[i].altitude = currentAltitude;
+            currentAltitude += levels[i].GetHeight() + 5;
         }
     }
 

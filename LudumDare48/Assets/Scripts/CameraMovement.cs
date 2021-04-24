@@ -29,7 +29,7 @@ public class CameraMovement : MonoBehaviour
         {
             newYPos = maxYPos;
         }
-        transform.position = new Vector3(playerTransform.position.x, newYPos, transform.position.z);            
+        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);            
     }
 
     private void OnNewLevelLoaded(Level newLevel)
