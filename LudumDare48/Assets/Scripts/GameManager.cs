@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement player = null;
     [SerializeField] private LevelsManager levelsManager = null;
+    [SerializeField] private UIManager uiManager = null;
     [SerializeField] private bool testCurrentLevelInScene = false;
 
     public UnityAction<Level> onNewLevelLoaded;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         {
             StartLevel();
         }
+        uiManager.UpdateAltitude(player.transform.position.y);
 #if DEBUG
         if(Input.GetKeyDown(KeyCode.N))
         {
