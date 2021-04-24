@@ -14,14 +14,22 @@ public class GameManager : MonoBehaviour
     private const string restartInput = "Restart";
 
     private Level currentLevel;
+    private Lerp playerLerp;
 
     public void FinishedLevel()
     {
-        LoadNextLevel();
+        player.PausePlayer();
+        void OnFinishAnimComplete()
+        {
+            player.ResumePlayer();
+            LoadNextLevel();
+        }
+        playerLerp.DoLerp(player.transform.position, player.transform.position + (Vector3.up * 20), 1, OnFinishAnimComplete);
     }
 
     private void Start()
     {
+        playerLerp = player.GetComponent<Lerp>();
         currentLevel = levelsManager.GetCurrentLevel();
 #if !UNITY_EDITOR
         testCurrentLevelInScene = false;
@@ -60,9 +68,23 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        player.RestartPlayer();
-        player.transform.position = currentLevel.GetPlayerSpawnPoint().position;
-        player.transform.rotation = currentLevel.GetPlayerSpawnPoint().rotation;
+        player.PausePlayer();
+        Vector3 spawnPos = currentLevel.GetPlayerSpawnPoint().position;
+        void OnStartAnimFinished()
+        {
+            player.ResumePlayer();
+            player.RestartPlayer();
+            player.transform.position = spawnPos;
+            player.transform.rotation = currentLevel.GetPlayerSpawnPoint().rotation;
+        }
+        if (!levelsManager.IsOnFirstLevel())
+        {
+            playerLerp.DoLerp(spawnPos - (Vector3.up * 20), spawnPos, 1, OnStartAnimFinished);
+        }
+        else
+        {
+            OnStartAnimFinished();
+        }
     }
 
     private void StartLevel()

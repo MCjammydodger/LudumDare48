@@ -14,6 +14,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigidBody = null;
     private Vector2 forceToApply = Vector2.zero;
     private float currentFuel = 0;
+    private bool paused = false;
+
+    public void PausePlayer()
+    {
+        rigidBody.isKinematic = true;
+        paused = true;
+    }
+
+    public void ResumePlayer()
+    {
+        rigidBody.isKinematic = false;
+        paused = false;
+    }
 
     public void RestartPlayer()
     {
@@ -42,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (paused) return;
+
         if(Input.GetButton(engineInput) && currentFuel > 0)
         {
             forceToApply = engineForce * transform.up;
@@ -59,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (paused) return;
         rigidBody.AddForce(forceToApply * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 
