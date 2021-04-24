@@ -8,7 +8,12 @@ public class Boost : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.parent.parent.GetComponent<Rigidbody2D>().AddForce(forceToApply * transform.up, ForceMode2D.Impulse);
+            Rigidbody2D playerRigidbody = collision.transform.parent.parent.GetComponent<Rigidbody2D>();
+            playerRigidbody.velocity = Vector2.zero;
+            playerRigidbody.angularVelocity = 0;
+            playerRigidbody.transform.position = transform.position;
+            playerRigidbody.transform.rotation = transform.rotation;
+            playerRigidbody.AddForce(forceToApply * transform.up, ForceMode2D.Impulse);
         }
     }
 }

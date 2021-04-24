@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
         Lerp.LerpTo[] lerpTos = { 
             new Lerp.LerpTo() { toVec = currentLevel.GetFinishTransform().position, 
-                                time = 0.5f}, 
+                                time = 0.1f}, 
             new Lerp.LerpTo() { toVec = currentLevel.GetFinishTransform().position + (Vector3.up * 20),
                                 time = 0.5f} };
         playerLerp.DoLerp(player.transform.position, lerpTos, OnFinishAnimComplete);
