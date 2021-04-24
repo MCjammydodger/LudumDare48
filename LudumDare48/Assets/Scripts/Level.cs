@@ -28,15 +28,17 @@ public class Level : MonoBehaviour
     }
 
     
-    private void SetupBoundaries()
+    public void SetupBoundaries()
     {
         float halfWidth = width / 2;
         float halfHeight = height / 2;
+        float halfScreenWidth = screenWidth / 2;
+        float halfScreenHeight = screenHeight / 2;
 
-        leftBorder.size = new Vector2(screenWidth, height + 20);
-        rightBorder.size = new Vector3(screenWidth, height + 20);
-        topBorder.size = new Vector3(width + 40, screenHeight);
-        bottomBorder.size = new Vector3(width + 40, screenHeight);
+        leftBorder.size = new Vector2(halfScreenWidth, height + halfScreenHeight);
+        rightBorder.size = new Vector3(halfScreenWidth, height + halfScreenHeight);
+        topBorder.size = new Vector3(width + halfScreenWidth, halfScreenHeight);
+        bottomBorder.size = new Vector3(width + halfScreenWidth, halfScreenHeight);
 
         leftBorder.transform.position = new Vector2(-halfWidth - (leftBorder.size.x / 2), halfHeight);
         rightBorder.transform.position = new Vector2(halfWidth + (rightBorder.size.x / 2), halfHeight);
