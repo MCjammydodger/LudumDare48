@@ -385,11 +385,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5729259304439117808, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729259304439117808, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729259304439117808, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
       propertyPath: flameEffect
       value: 
       objectReference: {fileID: 2036199165}
+    - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 874005990}
     - target: {fileID: 6106385570389991729, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
       propertyPath: m_Name

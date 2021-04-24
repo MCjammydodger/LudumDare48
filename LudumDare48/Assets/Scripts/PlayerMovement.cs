@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float engineForce = 10;
     [SerializeField] private float rotateSpeed = 30;
     [SerializeField] private GameObject flameEffect = null;
+    [SerializeField] private GameManager gameManager = null;
 
     private const string engineInput = "Jump";
     private const string rotateInput = "Horizontal";
@@ -45,5 +46,13 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rigidBody.AddForce(forceToApply * Time.fixedDeltaTime, ForceMode2D.Force);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Finish"))
+        {
+            gameManager.FinishedLevel();
+        }
     }
 }

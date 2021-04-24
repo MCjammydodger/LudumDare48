@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     private Level currentLevel;
 
+    public void FinishedLevel()
+    {
+        LoadNextLevel();
+    }
+
     private void Start()
     {
         currentLevel = levelsManager.GetCurrentLevel();
