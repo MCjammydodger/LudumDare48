@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement player = null;
+    [SerializeField] private LevelsManager levelsManager = null;
+    [SerializeField] private bool testCurrentLevelInScene = false;
+
+    public UnityAction<Level> onNewLevelLoaded;
 
     private const string restartInput = "Restart";
 
@@ -10,9 +15,19 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentLevel = FindObjectOfType<Level>();
+        currentLevel = levelsManager.GetCurrentLevel();
+#if !UNITY_EDITOR
+        testCurrentLevelInScene = false;
+#endif
+        if (testCurrentLevelInScene)
+        {
+            onNewLevelLoaded?.Invoke(currentLevel);
+        }
+        else
+        {
+            LoadNextLevel();
+        }
         Debug.Assert(currentLevel, "Level not found!");
-        StartLevel();
     }
 
     private void Update()
@@ -21,6 +36,16 @@ public class GameManager : MonoBehaviour
         {
             StartLevel();
         }
+#if DEBUG
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            LoadNextLevel();
+        }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            LoadPreviousLevel();
+        }
+#endif
     }
 
     private void SpawnPlayer()
@@ -33,5 +58,25 @@ public class GameManager : MonoBehaviour
     private void StartLevel()
     {
         SpawnPlayer();
+    }
+
+    private void LoadNextLevel()
+    {
+        if (!levelsManager.IsOnLastLevel())
+        {
+            currentLevel = levelsManager.LoadNextLevel();
+            StartLevel();
+            onNewLevelLoaded?.Invoke(currentLevel);
+        }
+    }
+
+    private void LoadPreviousLevel()
+    {
+        if(!levelsManager.IsOnFirstLevel())
+        {
+            currentLevel = levelsManager.LoadPreviousLevel();
+            StartLevel();
+            onNewLevelLoaded?.Invoke(currentLevel);
+        }
     }
 }

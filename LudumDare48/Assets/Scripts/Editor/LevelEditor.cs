@@ -11,6 +11,7 @@ public class LevelEditor : Editor
         if(GUILayout.Button("Setup Boundaries"))
         {
             level.SetupBoundaries();
+            EditorUtility.SetDirty(target);
         }
     }
 }
