@@ -12,6 +12,20 @@ public class LevelsManager : MonoBehaviour
     {
         // For debug purposes - if the scene is run with a level already in, it will clean it up.
         currentLevel = FindObjectOfType<Level>();
+        CalculateAltitudes();
+    }
+
+    private void CalculateAltitudes()
+    {
+        float currentAltitude = 0;
+        for(int i = 0; i < levels.Count; ++i)
+        {
+            if(levels[i].ShouldPreviousLevelAdvanceAltitude() && i != 0)
+            {
+                currentAltitude += levels[i - 1].GetHeight() + 5;
+            }
+            levels[i].altitude = currentAltitude;
+        }
     }
 
     public Level LoadLevel(int levelIndex)

@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         {
             StartLevel();
         }
-        uiManager.UpdateAltitude(player.transform.position.y);
+        uiManager.UpdateAltitude(player.transform.position.y + currentLevel.altitude);
 #if DEBUG
         if(Input.GetKeyDown(KeyCode.N))
         {
