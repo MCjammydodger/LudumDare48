@@ -4,6 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float engineForce = 10;
     [SerializeField] private float rotateSpeed = 30;
+    [SerializeField] private float maxFuel = 100;
+    [SerializeField] private float fuelPerSecond = 5;
     [SerializeField] private GameObject flameEffect = null;
     [SerializeField] private GameManager gameManager = null;
 
@@ -11,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private const string rotateInput = "Horizontal";
     private Rigidbody2D rigidBody = null;
     private Vector2 forceToApply = Vector2.zero;
+    private float currentFuel = 0;
 
     public void RestartPlayer()
     {
@@ -18,6 +21,16 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = Vector2.zero;
         rigidBody.angularVelocity = 0;
         rigidBody.isKinematic = false;
+        currentFuel = maxFuel;
+    }
+    public float GetMaxFuel()
+    {
+        return maxFuel;
+    }
+
+    public float GetFuelLevel()
+    {
+        return currentFuel;
     }
 
     private void Awake()
@@ -29,10 +42,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton(engineInput))
+        if(Input.GetButton(engineInput) && currentFuel > 0)
         {
             forceToApply = engineForce * transform.up;
             flameEffect.SetActive(true);
+            currentFuel -= fuelPerSecond * Time.deltaTime;
         }
         else
         {

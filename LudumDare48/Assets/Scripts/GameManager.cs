@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             StartLevel();
         }
         uiManager.UpdateAltitude(player.transform.position.y + currentLevel.altitude);
+        uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel());
 #if DEBUG
         if(Input.GetKeyDown(KeyCode.N))
         {
