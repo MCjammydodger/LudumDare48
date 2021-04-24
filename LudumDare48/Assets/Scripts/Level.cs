@@ -12,6 +12,16 @@ public class Level : MonoBehaviour
     private const float screenWidth = 40;
     private const float screenHeight = 20;
 
+    public float GetWidth()
+    {
+        return width;
+    }
+
+    public float GetHeight()
+    {
+        return height;
+    }
+
     private void Awake()
     {
         SetupBoundaries();
