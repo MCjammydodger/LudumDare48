@@ -47,7 +47,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 100
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -69,6 +69,7 @@ MonoBehaviour:
   engineForce: 100000
   rotateSpeed: 200
   flameEffect: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &7066690196550937360
 GameObject:
   m_ObjectHideFlags: 0

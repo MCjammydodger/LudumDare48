@@ -781,7 +781,7 @@ PrefabInstance:
     - target: {fileID: 880608528023562641, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5366905365938048073, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
@@ -852,6 +852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902246222640244696, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
