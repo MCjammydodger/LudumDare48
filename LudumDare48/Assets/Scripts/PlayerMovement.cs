@@ -3,14 +3,16 @@
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float engineForce = 10;
+    [SerializeField] private float rotateSpeed = 30;
 
     private const string engineInput = "Jump";
-    private Rigidbody2D mRigidbody = null;
-    private Vector2 mForceToApply = Vector2.zero;
+    private const string rotateInput = "Horizontal";
+    private Rigidbody2D rigidBody = null;
+    private Vector2 forceToApply = Vector2.zero;
 
     private void Awake()
     {
-        mRigidbody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
     // Start is called before the first frame update
     void Start()
@@ -23,16 +25,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetButton(engineInput))
         {
-            mForceToApply = engineForce * transform.up;
+            forceToApply = engineForce * transform.up;
         }
         else
         {
-            mForceToApply = Vector2.zero;
+            forceToApply = Vector2.zero;
         }
+
+        transform.Rotate(0, 0, -Input.GetAxis(rotateInput) * rotateSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        mRigidbody.AddForce(mForceToApply * Time.fixedDeltaTime, ForceMode2D.Force);
+        rigidBody.AddForce(forceToApply * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 }
