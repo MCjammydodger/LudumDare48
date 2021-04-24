@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerMovement player = null;
     [SerializeField] private LevelsManager levelsManager = null;
     [SerializeField] private UIManager uiManager = null;
+    [SerializeField] private SpriteRenderer background = null;
     [SerializeField] private bool testCurrentLevelInScene = false;
 
     public UnityAction<Level> onNewLevelLoaded;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 #endif
         if (testCurrentLevelInScene)
         {
+            StartLevel();
             onNewLevelLoaded?.Invoke(currentLevel);
         }
         else
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void StartLevel()
     {
+        background.sprite = currentLevel.GetBackground();
         SpawnPlayer();
     }
 

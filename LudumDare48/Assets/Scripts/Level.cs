@@ -5,6 +5,7 @@ public class Level : MonoBehaviour
     [SerializeField] private float width = 80;
     [SerializeField] private float height = 40;
     [SerializeField] private bool previousLevelAdvancesAltitude = false;
+    [SerializeField] private Sprite background = null;
     [SerializeField] private SpriteRenderer leftBorder = null;
     [SerializeField] private SpriteRenderer rightBorder = null;
     [SerializeField] private SpriteRenderer topBorder = null;
@@ -58,5 +59,10 @@ public class Level : MonoBehaviour
         rightBorder.transform.position = new Vector2(halfWidth + (rightBorder.size.x / 2), halfHeight);
         topBorder.transform.position = new Vector2(0, height + (topBorder.size.y / 2));
         bottomBorder.transform.position = new Vector2(0, -bottomBorder.size.y / 2);
+    }
+
+    public Sprite GetBackground()
+    {
+        return background;
     }
 }
