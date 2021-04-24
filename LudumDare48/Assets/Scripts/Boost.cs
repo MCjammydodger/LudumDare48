@@ -8,7 +8,6 @@ public class Boost : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player trigger");
             collision.transform.parent.parent.GetComponent<Rigidbody2D>().AddForce(forceToApply * transform.up, ForceMode2D.Impulse);
         }
     }

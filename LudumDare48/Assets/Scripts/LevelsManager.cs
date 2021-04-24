@@ -21,7 +21,7 @@ public class LevelsManager : MonoBehaviour
         for(int i = 0; i < levels.Count; ++i)
         {
             levels[i].altitude = currentAltitude;
-            currentAltitude += levels[i].GetHeight() + 5;
+            currentAltitude += levels[i].GetHeight() + 40;
         }
     }
 

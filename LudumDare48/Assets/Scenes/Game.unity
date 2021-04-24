@@ -521,6 +521,7 @@ MonoBehaviour:
   - {fileID: 4093681265560957785, guid: b592776bcd46c414cabb249eb23bbd79, type: 3}
   - {fileID: 4093681265560957785, guid: f220a4fce725e5e4691ff6954f148609, type: 3}
   - {fileID: 4093681265560957785, guid: 931cb15fd6127044ebb24427e5f00e7c, type: 3}
+  - {fileID: 4093681265560957785, guid: 23673a043f90c4e44b05049595973a40, type: 3}
 --- !u!4 &1425595906
 Transform:
   m_ObjectHideFlags: 0
@@ -1049,31 +1050,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5902246222640244696, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
-        type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 874005990}
-    - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
-        type: 3}
-      propertyPath: fuelPerSecond
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
-        type: 3}
-      propertyPath: engineForce
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
-        type: 3}
-      propertyPath: rotateSpeed
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 6106385570389991729, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
       propertyPath: m_Name

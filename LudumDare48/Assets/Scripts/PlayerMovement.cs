@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotateSpeed = 30;
     [SerializeField] private float fuelPerSecond = 5;
     [SerializeField] private GameObject flameEffect = null;
+    [SerializeField] private Collider2D playerCollider = null;
     [SerializeField] private GameManager gameManager = null;
 
     private const string engineInput = "Jump";
@@ -24,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
     public void PausePlayer()
     {
         rigidBody.isKinematic = true;
+        playerCollider.enabled = false;
         paused = true;
     }
 
     public void ResumePlayer()
     {
         rigidBody.isKinematic = false;
+        playerCollider.enabled = true;
         paused = false;
     }
 
