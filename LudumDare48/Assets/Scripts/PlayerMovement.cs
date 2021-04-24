@@ -16,10 +16,17 @@ public class PlayerMovement : MonoBehaviour
     private float currentFuel = 0;
     private float maxFuel = 0;
     private bool paused = false;
+    private float gravityMultiplier = 0;
 
     public void SetMaxFuel(float fuel)
     {
         maxFuel = fuel;
+    }
+
+    public void SetGravityMultiplier(float multiplier)
+    {
+        gravityMultiplier = multiplier;
+        rigidBody.gravityScale = multiplier;
     }
 
     public void PausePlayer()

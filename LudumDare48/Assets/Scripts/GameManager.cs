@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         }
         uiManager.UpdateAltitude(player.transform.position.y + currentLevel.altitude);
         uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel());
+        uiManager.UpdateGravityLevel(currentLevel.GetGravityMultiplier());
 #if DEBUG
         if(Input.GetKeyDown(KeyCode.N))
         {
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     private void StartNewLevel()
     {
         player.SetMaxFuel(currentLevel.GetMaxFuel());
+        player.SetGravityMultiplier(currentLevel.GetGravityMultiplier());
         StartLevel();
         player.PausePlayer();
         Vector3 spawnPos = currentLevel.GetPlayerSpawnPoint().position;

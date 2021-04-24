@@ -5,6 +5,7 @@ public class Level : MonoBehaviour
     [SerializeField] private float width = 80;
     [SerializeField] private float height = 40;
     [SerializeField] private float maxFuel = 100;
+    [SerializeField] private float gravityMultiplier = 1;
     [SerializeField] private Sprite background = null;
     [SerializeField] private SpriteRenderer leftBorder = null;
     [SerializeField] private SpriteRenderer rightBorder = null;
@@ -31,6 +32,11 @@ public class Level : MonoBehaviour
     public float GetMaxFuel()
     {
         return maxFuel;
+    }
+
+    public float GetGravityMultiplier()
+    {
+        return gravityMultiplier;
     }
 
     public Transform GetPlayerSpawnPoint()

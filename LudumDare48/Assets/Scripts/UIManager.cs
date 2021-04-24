@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI altitudeText = null;
     [SerializeField] private TextMeshProUGUI fuelText = null;
+    [SerializeField] private TextMeshProUGUI gravityText = null;
 
     public void UpdateAltitude(float altitude)
     {
@@ -15,5 +16,10 @@ public class UIManager : MonoBehaviour
     public void UpdateFuelLevel(float currentFuel, float maxFuel)
     {
         fuelText.text = "Fuel level: " + currentFuel.ToString("0") + "/" + maxFuel.ToString("0") + " (" + ((currentFuel / maxFuel) * 100).ToString("0") + "%)" ;
+    }
+
+    public void UpdateGravityLevel(float gravityMultiplier)
+    {
+        gravityText.text = "Gravity: " + (gravityMultiplier * 100).ToString("0") + "%";
     }
 }
