@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
     private bool paused = false;
     private float gravityMultiplier = 0;
     private bool deepSpace = false;
+    private Planet currentPlanet = null;
+
+    public float GetVelocity()
+    {
+        return rigidBody.velocity.magnitude;
+    }
 
     public void SetDeepSpace(bool isDeepSpace)
     {
@@ -103,6 +109,19 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.CompareTag("Finish"))
         {
             gameManager.FinishedLevel();
+        }
+        if(collision.gameObject.CompareTag("Planet") && currentPlanet == null)
+        {
+            currentPlanet = collision.GetComponent<Planet>();
+            gameManager.AtPlanet(currentPlanet);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Planet"))
+        {
+            currentPlanet = null;
         }
     }
 }

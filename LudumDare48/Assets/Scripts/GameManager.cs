@@ -16,6 +16,39 @@ public class GameManager : MonoBehaviour
     private Level currentLevel;
     private Lerp playerLerp;
 
+    private Planet currentPlanet = null;
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void AtPlanet(Planet planet)
+    {
+        currentPlanet = planet;
+        PauseGame();
+        uiManager.ShowPlanetPanel(PlanetPanelResponse);
+    }
+
+    public void PlanetPanelResponse(bool teleport)
+    {
+        player.RestartPlayer();
+        ResumeGame();
+        if(teleport)
+        {
+            // Load Planet level
+        }
+        else
+        {
+            currentPlanet = null;
+        }
+    }
+
     public void FinishedLevel()
     {
         player.PausePlayer();
@@ -64,7 +97,14 @@ public class GameManager : MonoBehaviour
         {
             StartLevel();
         }
-        uiManager.UpdateAltitude(player.transform.position.y + currentLevel.altitude);
+        if (currentLevel.IsDeepSpace())
+        {
+            uiManager.UpdateVelocity(player.GetVelocity());
+        }
+        else
+        {
+            uiManager.UpdateAltitude(player.transform.position.y + currentLevel.altitude);
+        }
         uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel());
         uiManager.UpdateGravityLevel(currentLevel.GetGravityMultiplier());
 #if DEBUG
@@ -98,7 +138,7 @@ public class GameManager : MonoBehaviour
         {
             player.ResumePlayer();
         }
-        if (!levelsManager.IsOnFirstLevel())
+        if (!levelsManager.IsOnFirstLevel() && !currentLevel.IsDeepSpace())
         {
             playerLerp.DoLerp(spawnPos - (Vector3.up * 20), spawnPos, 1, OnStartAnimFinished);
         }

@@ -11,9 +11,12 @@ public class CameraMovement : MonoBehaviour
 
     private bool deepSpace = false;
 
+    private Camera cam = null;
+
     private void Awake()
     {
         gameManager.onNewLevelLoaded += OnNewLevelLoaded;
+        cam = GetComponent<Camera>();
     }
 
     private void Start()
@@ -47,5 +50,6 @@ public class CameraMovement : MonoBehaviour
         maxYPos = level.GetHeight() - offsetFromTopAndBottom;
 
         deepSpace = level.IsDeepSpace();
+        cam.orthographicSize = deepSpace ? 20 : 10;
     }
 }
