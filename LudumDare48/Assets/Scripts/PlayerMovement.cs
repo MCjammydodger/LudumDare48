@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float engineForce = 10;
     [SerializeField] private float rotateSpeed = 30;
+    [SerializeField] private GameObject flameEffect = null;
 
     private const string engineInput = "Jump";
     private const string rotateInput = "Horizontal";
@@ -13,23 +14,21 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        flameEffect.SetActive(false);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
         if(Input.GetButton(engineInput))
         {
             forceToApply = engineForce * transform.up;
+            flameEffect.SetActive(true);
         }
         else
         {
             forceToApply = Vector2.zero;
+            flameEffect.SetActive(false);
         }
 
         transform.Rotate(0, 0, -Input.GetAxis(rotateInput) * rotateSpeed * Time.deltaTime);
