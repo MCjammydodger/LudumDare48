@@ -2,6 +2,7 @@
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] private bool deepSpace = false;
     [SerializeField] private float width = 80;
     [SerializeField] private float height = 40;
     [SerializeField] private float maxFuel = 100;
@@ -18,6 +19,11 @@ public class Level : MonoBehaviour
 
     private const float screenWidth = 40;
     private const float screenHeight = 20;
+
+    public bool IsDeepSpace()
+    {
+        return deepSpace;
+    }
 
     public float GetWidth()
     {

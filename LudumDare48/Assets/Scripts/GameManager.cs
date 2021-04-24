@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         player.SetMaxFuel(currentLevel.GetMaxFuel());
         player.SetGravityMultiplier(currentLevel.GetGravityMultiplier());
+        player.SetDeepSpace(currentLevel.IsDeepSpace());
         StartLevel();
         player.PausePlayer();
         Vector3 spawnPos = currentLevel.GetPlayerSpawnPoint().position;

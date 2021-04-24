@@ -17,6 +17,12 @@ public class PlayerMovement : MonoBehaviour
     private float maxFuel = 0;
     private bool paused = false;
     private float gravityMultiplier = 0;
+    private bool deepSpace = false;
+
+    public void SetDeepSpace(bool isDeepSpace)
+    {
+        deepSpace = isDeepSpace;
+    }
 
     public void SetMaxFuel(float fuel)
     {
@@ -83,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
             forceToApply = Vector2.zero;
             flameEffect.SetActive(false);
         }
-
         transform.Rotate(0, 0, -Input.GetAxis(rotateInput) * rotateSpeed * Time.deltaTime);
     }
 
