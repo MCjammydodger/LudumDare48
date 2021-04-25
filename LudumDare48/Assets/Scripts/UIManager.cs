@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI altitudeText = null;
     [SerializeField] private TextMeshProUGUI fuelText = null;
     [SerializeField] private TextMeshProUGUI gravityText = null;
+    [SerializeField] private TextMeshProUGUI warpDrivePiecesText = null;
+    [SerializeField] private TextMeshProUGUI panelText = null;
+    [SerializeField] private TextMeshProUGUI panelConfirmText = null;
 
     [SerializeField] private GameObject planetPanel = null;
 
@@ -38,8 +41,15 @@ public class UIManager : MonoBehaviour
         gravityText.text = "Gravity: " + (gravityMultiplier * 100).ToString("0") + "%";
     }
 
-    public void ShowPlanetPanel(UnityAction<bool> callback)
+    public void UpdateWarpDriveProgress(int piecesFound, int piecesTotal)
     {
+        warpDrivePiecesText.text = piecesFound + "/" + piecesTotal;
+    }
+
+    public void ShowPlanetPanel(UnityAction<bool> callback, string message, string confirmMessage)
+    {
+        panelText.text = message;
+        panelConfirmText.text = confirmMessage;
         panelCallback = callback;
         planetPanel.SetActive(true);
     }

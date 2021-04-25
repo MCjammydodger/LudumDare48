@@ -39,16 +39,23 @@ public class PlanetLocator : MonoBehaviour
     {
         for(int i = 0; i < planets.Length; ++i)
         {
-            Transform planet = planets[i].transform;
-            Transform pointer = pointers[i];
-            pointer.GetComponent<SpriteRenderer>().color = planets[i].colour;
-            pointer.position = player.position;
-            Vector3 direction = planet.position - player.position;
-            pointer.gameObject.SetActive(direction.sqrMagnitude > 20);
-            pointer.position = player.position + (direction.normalized * 20f);
-            Vector3 relative = pointer.InverseTransformPoint(planet.position);
-            float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
-            pointer.Rotate(0, 0, -angle);
+            if (!Progress.HasCompletedPlanet(planets[i].planetType) && (planets[i].planetType != Planets.Sun || Progress.HasCompletedAllPlanets()))
+            {
+                Transform planet = planets[i].transform;
+                Transform pointer = pointers[i];
+                pointer.GetComponent<SpriteRenderer>().color = planets[i].colour;
+                pointer.position = player.position;
+                Vector3 direction = planet.position - player.position;
+                pointer.gameObject.SetActive(direction.sqrMagnitude > 20);
+                pointer.position = player.position + (direction.normalized * 20f);
+                Vector3 relative = pointer.InverseTransformPoint(planet.position);
+                float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
+                pointer.Rotate(0, 0, -angle);
+            }
+            else
+            {
+                pointers[i].gameObject.SetActive(false);
+            }
         }
     }
 }

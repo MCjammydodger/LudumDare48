@@ -31,9 +31,36 @@ public class GameManager : MonoBehaviour
 
     public void AtPlanet(Planet planet)
     {
-        currentPlanet = planet;
-        PauseGame();
-        uiManager.ShowPlanetPanel(PlanetPanelResponse);
+        if (planet.planetType == Planets.Sun)
+        {
+            if(Progress.HasCompletedAllPlanets())
+            {
+                currentPlanet = planet;
+                PauseGame();
+                uiManager.ShowPlanetPanel(SunPanelResponse, "Do you want to warp out of the Solar System and end the game?", "Warp");
+            }
+        }
+        else
+        {
+            currentPlanet = planet;
+            PauseGame();
+            uiManager.ShowPlanetPanel(PlanetPanelResponse, "Do you want to teleport to the planet?", "Teleport");
+        }
+    }
+
+    public void SunPanelResponse(bool response)
+    {
+        player.RestartPlayer();
+        ResumeGame();
+        if(response)
+        {
+            // End game
+            Debug.Log("Game Completed!");
+        }
+        else
+        {
+            currentPlanet = null;
+        }
     }
 
     public void PlanetPanelResponse(bool teleport)
@@ -146,6 +173,7 @@ public class GameManager : MonoBehaviour
 
     private void StartNewLevel()
     {
+        uiManager.UpdateWarpDriveProgress(Progress.GetPlanetsCompletedCount(), Progress.GetTotalPlanetsToComplete());
         player.SetMaxFuel(currentLevel.GetMaxFuel());
         player.SetGravityMultiplier(currentLevel.GetGravityMultiplier());
         player.SetDeepSpace(currentLevel.IsDeepSpace());
@@ -170,6 +198,10 @@ public class GameManager : MonoBehaviour
 
     private void LoadNextLevel()
     {
+        if(levelsManager.IsOnLastLevel())
+        {
+            Progress.PlanetCompleted(levelsManager.GetCurrentPlanet());
+        }
         currentLevel = levelsManager.LoadNextLevel();
         StartNewLevel();
         onNewLevelLoaded?.Invoke(currentLevel);
