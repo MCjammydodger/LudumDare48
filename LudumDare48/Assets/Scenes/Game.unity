@@ -494,7 +494,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -574,7 +574,7 @@ MonoBehaviour:
   levelsManager: {fileID: 1425595905}
   uiManager: {fileID: 2018157224}
   background: {fileID: 2142685965}
-  testCurrentLevelInScene: 1
+  testCurrentLevelInScene: 0
   startingPlanet: 0
 --- !u!4 &874005991
 Transform:
@@ -1313,6 +1313,9 @@ MonoBehaviour:
     - {fileID: 4093681265560957785, guid: 931cb15fd6127044ebb24427e5f00e7c, type: 3}
     - {fileID: 4093681265560957785, guid: 23673a043f90c4e44b05049595973a40, type: 3}
     - {fileID: 4093681265560957785, guid: 1491ed7506cce7a4e9cb4781b8239531, type: 3}
+  - planet: 3
+    levels:
+    - {fileID: 5629412030268968696, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05, type: 3}
   space: {fileID: 4093681265560957785, guid: 5673b3bef932d0f4bbd929e354aa7d2a, type: 3}
 --- !u!4 &1425595906
 Transform:
@@ -2545,75 +2548,6 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
---- !u!1001 &552443319650208526
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968697, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629412030268968699, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05,
-        type: 3}
-      propertyPath: m_Name
-      value: PurpleLevel1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05, type: 3}
 --- !u!1001 &5902246222640244694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2691,6 +2625,11 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 874005990}
+    - target: {fileID: 5902246222640244697, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 6106385570389991729, guid: 0b1ec37753aa91c4e983a7ef8339e1d0,
         type: 3}
       propertyPath: m_Name

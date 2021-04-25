@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
     private bool deepSpace = false;
     private Planet currentPlanet = null;
 
+    public void DepleteFuel(float byAmount)
+    {
+        currentFuel -= byAmount;
+    }
+
     public void SetCurrentPlanet(Planet planet)
     {
         currentPlanet = planet;
