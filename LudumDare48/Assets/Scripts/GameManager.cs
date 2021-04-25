@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.UpdateAltitude(player.transform.position.y + currentLevel.altitude);
         }
-        uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel(), currentLevel.IsDeepSpace());
+        uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel(), !currentLevel.IsDeepSpace());
         uiManager.UpdateGravityLevel(currentLevel.GetGravityMultiplier());
 #if DEBUG
         if (!currentLevel.IsDeepSpace())
