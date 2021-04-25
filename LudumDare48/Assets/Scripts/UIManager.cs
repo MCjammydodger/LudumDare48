@@ -123,5 +123,6 @@ public class UIManager : MonoBehaviour
 public struct Dialogue
 {
     public string speaker;
+    [TextArea(2, 10)]
     public string dialogue;
 }

@@ -166,7 +166,7 @@ PrefabInstance:
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
       propertyPath: levelDialogue.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
@@ -182,12 +182,18 @@ PrefabInstance:
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
       propertyPath: levelDialogue.Array.data[0].speaker
-      value: Captain
+      value: Captain's Log
       objectReference: {fileID: 0}
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
       propertyPath: levelDialogue.Array.data[0].dialogue
-      value: I am talking
+      value: 'Our warp drive malfunctioned and it sent us to a distant solar system.
+        Now I am trapped here with my idiot pilot.
+
+
+        The only way out of
+        this system is to construct a new warp drive from pieces found on each of
+        the planets. '
       objectReference: {fileID: 0}
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
@@ -197,7 +203,29 @@ PrefabInstance:
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
       propertyPath: levelDialogue.Array.data[1].dialogue
-      value: And I'm not listeninga!
+      value: Ok captain, we have the first warp drive piece, now what?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[2].speaker
+      value: Captain
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[2].dialogue
+      value: It's only ours if we make it off this planet alive... and with you piloting
+        our chances of that are slim.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[3].speaker
+      value: Pilot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[3].dialogue
+      value: Trust me, I can get us out of here. Besides, the shields on this ship
+        are remarkably good.
       objectReference: {fileID: 0}
     - target: {fileID: 4301185082556560681, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}

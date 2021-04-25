@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
         {
             Planet planet = FindObjectOfType<PlanetLocator>().FindPlanetOfType(levelsManager.GetCurrentPlanet());
             spawnPoint = planet.transform;
-            player.SetCurrentPlanet(planet);
+            //player.SetCurrentPlanet(planet);
         }
         else
         {
