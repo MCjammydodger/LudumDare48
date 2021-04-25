@@ -3,11 +3,13 @@
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform = null;
-    [SerializeField] private float offsetFromTopAndBottom = 5;
+    [SerializeField] private float offsetFromSides = 5;
     [SerializeField] private GameManager gameManager = null;
 
     private float minYPos = 0;
     private float maxYPos = 0;
+    private float minXPos = 0;
+    private float maxXPos = 0;
 
     private bool deepSpace = false;
 
@@ -26,7 +28,7 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         float newYPos = playerTransform.position.y;
-        float newXPos = deepSpace ? playerTransform.position.x : 0;
+        float newXPos = playerTransform.position.x;
         if (!deepSpace)
         {
             if (newYPos < minYPos)
@@ -37,6 +39,14 @@ public class CameraMovement : MonoBehaviour
             {
                 newYPos = maxYPos;
             }
+            if(newXPos < minXPos)
+            {
+                newXPos = minXPos;
+            }
+            if(newXPos > maxXPos)
+            {
+                newXPos = maxXPos;
+            }
         }
         transform.position = new Vector3(newXPos, newYPos, transform.position.z);            
     }
@@ -46,8 +56,10 @@ public class CameraMovement : MonoBehaviour
         Level level = newLevel;
         Debug.Assert(level, "Level not found!");
 
-        minYPos = offsetFromTopAndBottom;
-        maxYPos = level.GetHeight() - offsetFromTopAndBottom;
+        minYPos = offsetFromSides;
+        maxYPos = level.GetHeight() - offsetFromSides;
+        minXPos = -(level.GetWidth() / 2) + offsetFromSides;
+        maxXPos = (level.GetWidth() / 2) - offsetFromSides;
 
         deepSpace = level.IsDeepSpace();
         cam.orthographicSize = deepSpace ? 20 : 10;
