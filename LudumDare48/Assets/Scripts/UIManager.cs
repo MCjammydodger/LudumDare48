@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     private Queue<Dialogue> dialogueQueue = null;
 
     private bool showingDialogue = false;
+    private bool showingEndScreen = false;
 
     private void Awake()
     {
@@ -114,6 +115,7 @@ public class UIManager : MonoBehaviour
     public void ShowEnd()
     {
         endPanel.SetActive(true);
+        showingEndScreen = true;
     }
 
     private void Update()
@@ -130,6 +132,11 @@ public class UIManager : MonoBehaviour
             {
                 ShowDialogue(dialogueQueue.Dequeue());
             }
+        }
+
+        if(showingEndScreen && Input.GetButtonUp("Jump"))
+        {
+            Application.Quit();
         }
     }
 }
