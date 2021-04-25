@@ -575,7 +575,7 @@ MonoBehaviour:
   uiManager: {fileID: 2018157224}
   background: {fileID: 2142685965}
   testCurrentLevelInScene: 0
-  startingPlanet: 0
+  startingPlanet: 3
 --- !u!4 &874005991
 Transform:
   m_ObjectHideFlags: 0
@@ -1316,6 +1316,8 @@ MonoBehaviour:
   - planet: 3
     levels:
     - {fileID: 5629412030268968696, guid: 780884b1b9fb0c644a8b3a4e0d6b2d05, type: 3}
+    - {fileID: 5629412030268968696, guid: 6e95f3e93a0843a489b3cad098e16970, type: 3}
+    - {fileID: 5629412030268968696, guid: d7fe2f3786d22fa479fa81efa598d2e4, type: 3}
   space: {fileID: 4093681265560957785, guid: 5673b3bef932d0f4bbd929e354aa7d2a, type: 3}
 --- !u!4 &1425595906
 Transform:
