@@ -879,6 +879,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
+      propertyPath: levelDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
       propertyPath: width
       value: 20
       objectReference: {fileID: 0}
@@ -895,7 +900,7 @@ PrefabInstance:
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
       propertyPath: altitude
-      value: 105
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}
@@ -907,6 +912,36 @@ PrefabInstance:
         type: 3}
       propertyPath: maxFuel
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[0].speaker
+      value: H
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[0].dialogue
+      value: Mother of God
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[1].speaker
+      value: Pilot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[1].dialogue
+      value: hrughruo huo xhouhvouhrvnvb gekjrbhc
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[2].speaker
+      value: Captain
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301185082556560680, guid: 7e93c997674a8f94f95e1b03aba2b972,
+        type: 3}
+      propertyPath: levelDialogue.Array.data[2].dialogue
+      value: Hm.
       objectReference: {fileID: 0}
     - target: {fileID: 4301185082556560681, guid: 7e93c997674a8f94f95e1b03aba2b972,
         type: 3}

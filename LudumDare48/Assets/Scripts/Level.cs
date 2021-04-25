@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Level : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Level : MonoBehaviour
     [SerializeField] private SpriteRenderer bottomBorder = null;
     [SerializeField] private Transform playerSpawnPoint = null;
     [SerializeField] private Transform finishTransform = null;
+    [SerializeField] private Dialogue[] levelDialogue = null;
 
     [HideInInspector] public float altitude = 0;
 
@@ -53,6 +55,11 @@ public class Level : MonoBehaviour
     public Transform GetFinishTransform()
     {
         return finishTransform;
+    }
+
+    public Dialogue[] GetDialogue()
+    {
+        return levelDialogue;
     }
 
     private void Awake()

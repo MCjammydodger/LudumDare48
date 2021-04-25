@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,9 +13,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI panelText = null;
     [SerializeField] private TextMeshProUGUI panelConfirmText = null;
 
+    [SerializeField] private TextMeshProUGUI speakerText = null;
+    [SerializeField] private TextMeshProUGUI dialogueText = null;
+    [SerializeField] private GameObject dialoguePanel = null;
+
     [SerializeField] private GameObject planetPanel = null;
 
     private UnityAction<bool> panelCallback = null;
+    private UnityAction dialogueCallback = null;
+    private Queue<Dialogue> dialogueQueue = null;
+
+    private bool showingDialogue = false;
 
     private void Awake()
     {
@@ -67,4 +76,52 @@ public class UIManager : MonoBehaviour
         panelCallback?.Invoke(false);
         panelCallback = null;
     }
+
+    public void SetDialogue(Dialogue[] dialogues, UnityAction onDialogueFinished)
+    {
+        if(dialogues == null || dialogues.Length == 0)
+        {
+            onDialogueFinished?.Invoke();
+            return;
+        }
+        dialogueQueue = new Queue<Dialogue>();
+        for(int i = 0; i < dialogues.Length; ++i)
+        {
+            dialogueQueue.Enqueue(dialogues[i]);
+        }
+        dialogueCallback = onDialogueFinished;
+        showingDialogue = true;
+        ShowDialogue(dialogueQueue.Dequeue());
+    }
+
+    public void ShowDialogue(Dialogue dialogue)
+    {
+        dialogueText.text = dialogue.dialogue;
+        speakerText.text = dialogue.speaker;
+        dialoguePanel.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if(showingDialogue && Input.GetButtonUp("Jump"))
+        {
+            if(dialogueQueue.Count == 0)
+            {
+                dialoguePanel.SetActive(false);
+                showingDialogue = false;
+                dialogueCallback?.Invoke();
+            }
+            else
+            {
+                ShowDialogue(dialogueQueue.Dequeue());
+            }
+        }
+    }
+}
+
+[System.Serializable]
+public struct Dialogue
+{
+    public string speaker;
+    public string dialogue;
 }

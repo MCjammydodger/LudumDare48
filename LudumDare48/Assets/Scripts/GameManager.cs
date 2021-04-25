@@ -184,12 +184,26 @@ public class GameManager : MonoBehaviour
             Vector3 spawnPos = currentLevel.GetPlayerSpawnPoint().position;
             void OnStartAnimFinished()
             {
-                player.ResumePlayer();
+                ShowDialogue();
             }
             playerLerp.DoLerp(spawnPos - (Vector3.up * 20), spawnPos, 1, OnStartAnimFinished);
         }
+        else
+        {
+            player.PausePlayer();
+            ShowDialogue();
+        }
     }
 
+    private void ShowDialogue()
+    {
+        uiManager.SetDialogue(currentLevel.GetDialogue(), DialogueFinished);
+    }
+
+    private void DialogueFinished()
+    {
+        player.ResumePlayer();
+    }
     private void StartLevel()
     {
         background.sprite = currentLevel.GetBackground();
