@@ -4,7 +4,10 @@ using UnityEngine;
 
 public enum Planets
 {
-    GreenPlanet
+    GreenPlanet,
+    Sun,
+    BluePlanet,
+    PurplePlanet
 }
 
 public class Planet : MonoBehaviour
