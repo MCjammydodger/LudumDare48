@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject planetPanel = null;
 
+    [SerializeField] private GameObject endPanel = null;
+
     private UnityAction<bool> panelCallback = null;
     private UnityAction dialogueCallback = null;
     private Queue<Dialogue> dialogueQueue = null;
@@ -39,10 +41,18 @@ public class UIManager : MonoBehaviour
     {
         altitudeText.text = "Velocity: " + velocity.ToString("0") + "km/s";
     }
-    public void UpdateFuelLevel(float currentFuel, float maxFuel)
+    public void UpdateFuelLevel(float currentFuel, float maxFuel, bool show)
     {
-        currentFuel = currentFuel < 0 ? 0 : currentFuel;
-        fuelText.text = "Fuel level: " + currentFuel.ToString("0") + "/" + maxFuel.ToString("0") + " (" + ((currentFuel / maxFuel) * 100).ToString("0") + "%)" ;
+        if (show)
+        {
+            fuelText.gameObject.SetActive(true);
+            currentFuel = currentFuel < 0 ? 0 : currentFuel;
+            fuelText.text = "Fuel level: " + currentFuel.ToString("0") + "/" + maxFuel.ToString("0") + " (" + ((currentFuel / maxFuel) * 100).ToString("0") + "%)";
+        }
+        else
+        {
+            fuelText.gameObject.SetActive(false);
+        }
     }
 
     public void UpdateGravityLevel(float gravityMultiplier)
@@ -99,6 +109,11 @@ public class UIManager : MonoBehaviour
         dialogueText.text = dialogue.dialogue;
         speakerText.text = dialogue.speaker;
         dialoguePanel.SetActive(true);
+    }
+
+    public void ShowEnd()
+    {
+        endPanel.SetActive(true);
     }
 
     private void Update()

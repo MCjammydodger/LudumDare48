@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool testCurrentLevelInScene = false;
     [SerializeField] private Planets startingPlanet = Planets.GreenPlanet;
 
+    [SerializeField] private Dialogue[] greenPlanetDialogue;
+    [SerializeField] private Dialogue[] purplePlanetDialogue;
+
     public UnityAction<Level> onNewLevelLoaded;
 
     private const string restartInput = "Restart";
@@ -54,8 +57,9 @@ public class GameManager : MonoBehaviour
         ResumeGame();
         if(response)
         {
-            // End game
-            Debug.Log("Game Completed!");
+            uiManager.ShowEnd();
+            PauseGame();
+            player.PausePlayer();
         }
         else
         {
@@ -136,7 +140,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.UpdateAltitude(player.transform.position.y + currentLevel.altitude);
         }
-        uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel());
+        uiManager.UpdateFuelLevel(player.GetFuelLevel(), player.GetMaxFuel(), currentLevel.IsDeepSpace());
         uiManager.UpdateGravityLevel(currentLevel.GetGravityMultiplier());
 #if DEBUG
         if (!currentLevel.IsDeepSpace())
@@ -197,7 +201,20 @@ public class GameManager : MonoBehaviour
 
     private void ShowDialogue()
     {
-        uiManager.SetDialogue(currentLevel.GetDialogue(), DialogueFinished);
+        Dialogue[] dialogue = currentLevel.GetDialogue();
+        if (currentLevel.IsDeepSpace())
+        {
+            if (levelsManager.GetCurrentPlanet() == Planets.GreenPlanet)
+            {
+                dialogue = greenPlanetDialogue;
+            }
+            else if (levelsManager.GetCurrentPlanet() == Planets.PurplePlanet)
+            {
+                dialogue = purplePlanetDialogue;
+            }
+        }
+        uiManager.SetDialogue(dialogue, DialogueFinished);
+        
     }
 
     private void DialogueFinished()
